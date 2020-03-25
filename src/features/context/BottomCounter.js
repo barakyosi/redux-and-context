@@ -1,18 +1,15 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import {
-  selectCount,
-} from './counterSlice';
+import { useCounter } from './index';
 
-export function BottomCounter() {
-  const count = useSelector(state => state.counter.value);
+export default () => {
+  const { state } = useCounter();
   useEffect(() => {
-    console.log('Class: BottomCounter, Function: , Line 10');
+    console.log('ContextBottomCounter Rerender');
   });
 
   return (
     <div>
-      {count}
+      {state.count}
     </div>
   );
 }

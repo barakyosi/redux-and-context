@@ -20,7 +20,7 @@ export default () => {
         decrement={decrement}
         increment={increment}
         incrementByAmount={incrementByAmount}
-        incrementAsync={incrementAsync}
+        onIncrementAsync={(amount) => dispatch(incrementAsync(amount))}
     />
   );
 }

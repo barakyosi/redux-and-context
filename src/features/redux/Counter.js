@@ -7,7 +7,7 @@ export function Counter({ count,
                           decrement,
                           increment,
                           incrementByAmount,
-                          incrementAsync,
+                            onIncrementAsync,
                         }) {
   const [incrementAmount, setIncrementAmount] = useState('2');
 
@@ -47,7 +47,7 @@ export function Counter({ count,
         </button>
         <button
           className={styles.asyncButton}
-          onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}
+          onClick={() => onIncrementAsync(Number(incrementAmount) || 0)}
         >
           Add Async
         </button>

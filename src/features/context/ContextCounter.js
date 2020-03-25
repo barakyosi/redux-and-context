@@ -1,26 +1,22 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  decrement,
-  increment,
-  incrementByAmount,
-  incrementAsync,
-  selectCount,
-} from './counterSlice';
-import {Counter} from './Counter';
+import {Counter} from '../redux/Counter';
+import { useCounter } from './index';
 
 export default () => {
-  const count = useSelector(selectCount);
-  const dispatch = useDispatch();
+  const { state, dispatch } = useCounter();
 
   return (
     <Counter
-        count={count}
+        count={state.count}
         dispatch={dispatch}
-        decrement={decrement}
-        increment={increment}
-        incrementByAmount={incrementByAmount}
-        incrementAsync={incrementAsync}
+        decrement={() => ({type: 'decrement'})}
+        increment={() => ({type: 'increment'})}
+        incrementByAmount={(count)=>({type: 'incrementByAmount', payload: count })}
+        onIncrementAsync={(count) => {
+          setTimeout(() => {
+            dispatch({type: 'incrementByAmount', payload: count });
+          }, 1000);
+        }}
     />
   );
 }
